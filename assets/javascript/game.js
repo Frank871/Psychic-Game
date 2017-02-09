@@ -19,42 +19,50 @@
 
 
 var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var guessedLetters = [];
 var Wins = 0;
 var Losses = 0;
-var Guessesleft = 13;
+var Guessesleft = 9;
 var Guessessofar = 0;
 
-document.onkeyup = function(event) {
 
-	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+var reset = function() {
+      totalGuesses = 9;
+      guessesLeft = 9;
+      guessedLetters = [];
+
+      guessedLeft();
+      guessedLetters();
+      
+    }; 
+document.onkeyup = function(event) {
+     
+    
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 	var computerGuess = letters[Math.floor(Math.random() * letters.length)];
     console.log(computerGuess);
 	console.log("computer guess: " + computerGuess + ", user guess: " + userGuess);
-           if (computerGuess === userGuess) {
-             
-             if (computerGuess === userGuess[Wins][1]) {
-            score++;
-            updateWins();
-               document.getElementById("Wins").innerHTML = "Wins: " + ++Wins;
-//then you want to reset you guesses which i created for you back to empty string to reset...
-// when the game is over i put everything back into reset() function to reset guessesleft back to 13 
-// and guess back to empty string....
+           
+         if (computerGuess === userGuess) {
+        Wins ++;
+        document.querySelector("#Wins").innerHTML = Wins;
 
-           }
+        reset();
+    }
 
-           else  if (computerGuess !== userGuess) {
-              //now try do it for loss
-              document.getElementById("Losses").innerHTML = "Losses: " + ++Losses;
-              //when user !== computerguess... add the letter to the screen with innherhtml
+           else if (computerGuess !== userGuess) {
+             Losses ++;
+              document.getElementById("#Losses").innerHTML = Losses;
+              
            }
            
-  // var html = "<p>Press any key to start playing!</p>" +
-  //           "<p>Wins: " + Wins + "</p>" +
-	//           "<p>Losses: " + Losses + "</p>" +
-	 //          "<p>Guesses left: " + Guesses + left + "</p>" +
-	   //       "<p>Your Guesses so far: " + Your + Guesses + so + far + '' "</p>";
+  var html = "<p>Press any key to start playing!</p>" +
+              "<p>Wins: " + Wins + "</p>" +
+              "<p>Losses: " + Losses + "</p>" +
+              "<p>Guesses left: " + Guesses + left + "</p>" +
+	          "<p>Your Guesses so far: " + Your + Guesses + so + far + "</p>";
 
-	// document.querySelector("#game").innerHTML = html;
+	document.querySelector("#game").innerHTML = html;
 	
 }
 
