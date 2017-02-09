@@ -23,7 +23,8 @@ var guessedLetters = [];
 var Wins = 0;
 var Losses = 0;
 var Guessesleft = 9;
-var Guessessofar = 0;
+
+
 
 
 var reset = function() {
@@ -41,28 +42,33 @@ document.onkeyup = function(event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 	var computerGuess = letters[Math.floor(Math.random() * letters.length)];
     console.log(computerGuess);
-	console.log("computer guess: " + computerGuess + ", user guess: " + userGuess);
-           
-         if (computerGuess === userGuess) {
-        Wins ++;
+	console.log("computer guess: " + computerGuess + ", user guess: " + userGuess); 
+
+
+	
+     if (computerGuess === userGuess) {
+        Wins++;
         document.querySelector("#Wins").innerHTML = Wins;
+        document.getElementById("#Wins").innerHTML = Wins;
 
         reset();
     }
 
-           else if (computerGuess !== userGuess) {
-             Losses ++;
+           else if (userGuess !== computerGuess) {
+             Losses++;
+              document.querySelector("#Losses").innerHTML = Losses;
               document.getElementById("#Losses").innerHTML = Losses;
+
               
            }
            
-  var html = "<p>Press any key to start playing!</p>" +
-              "<p>Wins: " + Wins + "</p>" +
-              "<p>Losses: " + Losses + "</p>" +
-              "<p>Guesses left: " + Guesses + left + "</p>" +
-	          "<p>Your Guesses so far: " + Your + Guesses + so + far + "</p>";
-
-	document.querySelector("#game").innerHTML = html;
+  var html = "<p>Wins : " + Wins + " </p> " +
+              "<p>Losses : " + Losses + " </p> " +
+              "<p>Guessesleft : " + Guessesleft + " </p> " +
+              "<p>guessedLetters : " + guessedLetters + " </p> ";
+	          
+    document.querySelector("#game").innerHTML = html;
+	document.getElementById("#game").innerHTML = html;
 	
 }
 
